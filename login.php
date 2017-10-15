@@ -44,7 +44,7 @@ include "includes/header.php";
 ?>
     <div class="container login-container">
         <div class="row">
-            <div class="col login-div">
+            <div class="col logo-div">
                 <img src="<?php echo APP_ROOT; ?>/assets/img/logo_white.png" alt="..." class="login-logo">
             </div>
         </div>
