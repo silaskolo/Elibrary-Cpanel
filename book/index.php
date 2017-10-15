@@ -30,7 +30,7 @@ include "../includes/navbar.php"
                 <tbody>
                 <?php
 
-                if ($book_result) {
+                if ($book_result && $book_result->num_rows) {
                     $count = 0;
                     while ($book = $book_result->fetch_assoc()) {
                         ?>

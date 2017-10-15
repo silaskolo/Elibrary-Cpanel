@@ -32,7 +32,7 @@ if (isset($_POST['action']) && $_POST['action'] == "login") {
     if ($has_error) {
         $error_message["form"] = sprintf("%d Error(s) found", count($error_message));
     } else {
-        if (login_user($username, $password)) {
+        if (login_user($connection,$username, $password)) {
             redirect_to("index.php");
         } else {
             $error_message["form"] = "Username / Password is Incorrect";
