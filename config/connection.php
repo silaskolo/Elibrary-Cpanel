@@ -1,6 +1,6 @@
 <?php
 
-require "config.php";
+require_once "config.php";
 
 //SQL Should throw Exceptions
 mysqli_report(MYSQLI_REPORT_STRICT);
@@ -11,5 +11,3 @@ try{
 }catch (Exception $e){
     die(sprintf("Connection Failed: %s",$e->getMessage()));
 }
-
-echo "Connection Successful";
