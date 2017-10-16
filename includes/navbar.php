@@ -27,15 +27,6 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="ProjectsLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Projects
-                </a>
-                <div class="dropdown-menu" aria-labelledby="ProjectsLink">
-                    <a class="dropdown-item" href="<?php echo APP_ROOT; ?>/project/index.php">View</a>
-                    <a class="dropdown-item" href="<?php echo APP_ROOT; ?>/project/add.php">Add</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="AdminLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Admin
                 </a>
@@ -46,6 +37,11 @@
                     <a class="dropdown-item" href="<?php echo APP_ROOT; ?>/admin/faculty.php">Faculty</a>
                     <a class="dropdown-item" href="<?php echo APP_ROOT; ?>/admin/category.php">Category</a>
                 </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo APP_ROOT; ?>/logout.php">Logout</a>
             </li>
         </ul>
     </div>

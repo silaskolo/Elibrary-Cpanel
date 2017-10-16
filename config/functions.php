@@ -11,6 +11,14 @@ function is_logged_in()
     }
 }
 
+function logout()
+{
+    unset($_SESSION['user_id']);
+    unset($_SESSION['username']);
+    session_destroy();
+
+}
+
 function redirect_to($path)
 {
     Header(sprintf("Location: %s", $path));
@@ -20,9 +28,9 @@ function redirect_to($path)
 function login_user($connection, $username, $password)
 {
     try {
-        $query = sprintf("SELECT * FROM app_user WHERE username='%s' AND userPass='%s'", $username, sha1($password));
+        $query = sprintf("SELECT * FROM app_user WHERE username='%s' AND userPass='%s'", $username, hash("sha256", $password));
         $result = $connection->query($query);
-        if (!$result) {
+        if (!$result->num_rows) {
             return false;
         } else {
             $user = $result->fetch_assoc();
@@ -43,6 +51,7 @@ function insert_query($connection, $table, $args)
         $field_names = implode(",", array_keys($args));
         $field_values = implode("','", array_values($args));
         $query = sprintf("INSERT INTO %s (%s) VALUES ('%s')", $table, $field_names, $field_values);
+
         $result = $connection->query($query);
         if (!$result) {
             return false;
@@ -56,7 +65,7 @@ function insert_query($connection, $table, $args)
     }
 }
 
-function query_set(&$value,$key)
+function query_set(&$value, $key)
 {
     $value = sprintf("%s='%s'", $key, $value);
 }
@@ -64,11 +73,12 @@ function query_set(&$value,$key)
 function update_query($connection, $table, $args, $where)
 {
     try {
-        array_walk($args,"query_set");
-        array_walk($where,"query_set");
-        $field_args = implode(",",  array_values($args));
+        array_walk($args, "query_set");
+        array_walk($where, "query_set");
+        $field_args = implode(",", array_values($args));
         $field_where = implode(" = ", array_values($where));
         $query = sprintf("UPDATE %s SET %s WHERE %s ", $table, $field_args, $field_where);
+        echo $query;
         $result = $connection->query($query);
 
         if (!$result) {
@@ -89,31 +99,11 @@ function upload_files($file, $sub_dir = "")
     $target_file = $target_dir . basename($file["FILES"]["name"]);
     $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
-    if (getimagesize($file["FILES"]["tmp_name"]) === false) {
-        return [
-            "status" => false,
-            "message" => "File is Fake"
-        ];
-    }
-
-    if ($file["FILES"]["size"] > 500000) {
-        return [
-            "status" => false,
-            "message" => "File is too Large"
-        ];
-    }
-
-    if (!in_array($imageFileType, $file["allowed_ext"])) {
-        return [
-            "status" => false,
-            "message" => "Invalid Extension"
-        ];
-    }
 
     if (move_uploaded_file($file["FILES"]["tmp_name"], sprintf("%s%s%s.%s", APP_PATH, $target_dir, $file["filename"], $imageFileType))) {
         return [
             "status" => true,
-            "name" => sprintf("%s.%s",$file["filename"],$imageFileType)
+            "name" => sprintf("%s.%s", $file["filename"], $imageFileType)
         ];
     } else {
         return [
