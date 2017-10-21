@@ -51,6 +51,7 @@ include "../includes/navbar.php"
                     <th>Question Year</th>
                     <th>Question Semester</th>
                     <th>Question Type</th>
+                    <th>Question File</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -67,7 +68,8 @@ include "../includes/navbar.php"
                             <td><?php echo $question['questionYear']; ?></td>
                             <td><?php echo $semester_array[$question['semesterID']]; ?></td>
                             <td><?php echo $type_array[$question['typeID']]; ?></td>
-                            <td><?php echo $question['questionID']; ?></td>
+                            <td><a target="_blank" class="btn btn-primary" href="<?php echo APP_UPLOADS."questions/".$question['questionFileLocation']; ?>">View</a></td>
+                            <td><a class="btn btn-danger" href="edit.php?questionID=<?php echo $question['questionID']; ?>">Edit</a></td>
                         </tr>
                         <?php
                     }

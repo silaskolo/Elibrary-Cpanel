@@ -78,7 +78,6 @@ function update_query($connection, $table, $args, $where)
         $field_args = implode(",", array_values($args));
         $field_where = implode(" = ", array_values($where));
         $query = sprintf("UPDATE %s SET %s WHERE %s ", $table, $field_args, $field_where);
-        echo $query;
         $result = $connection->query($query);
 
         if (!$result) {

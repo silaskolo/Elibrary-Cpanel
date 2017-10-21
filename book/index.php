@@ -42,6 +42,8 @@ include "../includes/navbar.php"
                     <th>Book Name</th>
                     <th>Author</th>
                     <th>Category</th>
+                    <th>File</th>
+                    <th>Cover</th>
                     <th>Action</th>
                 </tr>
                 </thead>
@@ -57,7 +59,9 @@ include "../includes/navbar.php"
                             <td><?php echo $book['bookName']; ?></td>
                             <td><?php echo $author_array[$book['authorID']]; ?></td>
                             <td><?php echo $category_array[$book['categoryID']]; ?></td>
-                            <td><?php echo $book['bookID']; ?></td>
+                            <td><a target="_blank" class="btn btn-primary" href="<?php echo APP_UPLOADS."books/".$book['bookFileLocation']; ?>">View</a></td>
+                            <td><a target="_blank" class="btn btn-info" href="<?php echo APP_UPLOADS."books/".$book['bookCover']; ?>">View</a></td>
+                            <td><a class="btn btn-danger" href="edit.php?bookID=<?php echo $book['bookID']; ?>">Edit</a></td>
                         </tr>
                         <?php
                     }
