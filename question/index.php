@@ -58,7 +58,7 @@ include "../includes/navbar.php"
                 <tbody>
                 <?php
 
-                if ($question_result) {
+                if ($question_result && $question_result->num_rows) {
                     $count = 0;
                     while ($question = $question_result->fetch_assoc()) {
                         ?>
