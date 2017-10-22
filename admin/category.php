@@ -6,7 +6,7 @@ require_once "../config/functions.php";
 
 //Check is User Session Exist i.e if user is logged in
 if (!is_logged_in())
-redirect_to("login.php"); //Redirect user to Login if not logged in
+    redirect_to(APP_ROOT . "/login.php"); //Redirect user to Login if not logged in
 
 $category_query = sprintf("SELECT * FROM app_category WHERE isActive='%s' AND categoryStatus='%s'", ACTIVE, STATE_SUCCESS);
 $category_result = $connection->query($category_query);

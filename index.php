@@ -6,7 +6,7 @@ require_once "config/functions.php";
 
 //Check is User Session Exist i.e if user is logged in
 if (!is_logged_in())
-    redirect_to("login.php"); //Redirect user to Login if not logged in
+    redirect_to(APP_ROOT . "/login.php"); //Redirect user to Login if not logged in
 
 $book_query = sprintf("SELECT COUNT(*) FROM app_book WHERE isActive='%s' AND bookStatus='%s'",ACTIVE,STATE_SUCCESS);
 $book_result = $connection->query($book_query);

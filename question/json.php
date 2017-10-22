@@ -3,7 +3,7 @@ session_start();
 require_once "../config/functions.php";
 
 if (!is_logged_in())
-    redirect_to("../login.php"); //Redirect user to Login if not logged in
+    redirect_to(APP_ROOT . "/login.php"); //Redirect user to Login if not logged in
 
 header("Cache-Control: no-cache, must-revalidate");
 header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");

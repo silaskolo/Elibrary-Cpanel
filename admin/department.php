@@ -6,7 +6,8 @@ require_once "../config/functions.php";
 
 //Check is User Session Exist i.e if user is logged in
 if (!is_logged_in())
-redirect_to("login.php"); //Redirect user to Login if not logged in
+    redirect_to(APP_ROOT . "/login.php"); //Redirect user to Login if not logged in
+
 $faculty_query = sprintf("SELECT * FROM app_faculty WHERE isActive='%s' AND facultyStatus='%s'",ACTIVE,STATE_SUCCESS);
 $faculty_result = $connection->query($faculty_query);
 

@@ -6,7 +6,8 @@ require_once "../config/functions.php";
 
 //Check is User Session Exist i.e if user is logged in
 if (!is_logged_in())
-redirect_to("login.php"); //Redirect user to Login if not logged in
+    redirect_to(APP_ROOT . "/login.php"); //Redirect user to Login if not logged in
+
 $department_query = sprintf("SELECT * FROM app_department WHERE isActive='%s' AND departmentStatus='%s'", ACTIVE, STATE_SUCCESS);
 $department_result = $connection->query($department_query);
 
