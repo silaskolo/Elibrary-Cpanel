@@ -60,7 +60,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'addQuestion') {
         if (!in_array($questionFileType, ["pdf"])) {
             $has_error = true;
             $error_message["fileQuestion"] = "Invalid Extension";
-        }elseif ($_FILES['fileQuestion']["size"] > 500000) {
+        }elseif ($_FILES['fileQuestion']["size"] > 5000000) {
             $has_error = true;
             $error_message["fileQuestion"] = "File is too Large";
         }
