@@ -29,7 +29,6 @@ include "../includes/navbar.php"
                 <thead class="thead-default">
                 <tr>
                     <th>#</th>
-                    <th>Username</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -46,7 +45,6 @@ include "../includes/navbar.php"
                         ?>
                         <tr>
                             <th scope="row"><?php echo ++$count; ?></th>
-                            <td><?php echo $user['username']; ?></td>
                             <td><?php echo $user['userFname']; ?></td>
                             <td><?php echo $user['userLname']; ?></td>
                             <td><?php echo $user['userEmail']; ?></td>

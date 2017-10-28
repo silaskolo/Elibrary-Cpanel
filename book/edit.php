@@ -78,7 +78,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'editBook') {
         if (!in_array($bookFileType, ["pdf"])) {
             $has_error = true;
             $error_message["fileBook"] = "Invalid Extension";
-        } elseif ($_FILES['fileBook']["size"] > 5000000) {
+        } elseif ($_FILES['fileBook']["size"] > 50000000) {
             $has_error = true;
             $error_message["fileBook"] = "File is too Large";
         }
@@ -91,7 +91,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'editBook') {
         if (!in_array($coverFileType, ["jpg", "jpeg", "png"])) {
             $has_error = true;
             $error_message["fileCover"] = "Invalid Extension";
-        } elseif ($_FILES['fileCover']["size"] > 5000000) {
+        } elseif ($_FILES['fileCover']["size"] > 50000000) {
             $has_error = true;
             $error_message["fileCover"] = "File is too Large";
         }

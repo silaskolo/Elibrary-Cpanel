@@ -4,7 +4,7 @@ require_once "connection.php";
 
 function is_logged_in()
 {
-    if (isset($_SESSION['user_id']) && $_SESSION['username']) {
+    if (isset($_SESSION['user_id']) && $_SESSION['userEmail']) {
         return true;
     } else {
         return false;
@@ -14,7 +14,7 @@ function is_logged_in()
 function logout()
 {
     unset($_SESSION['user_id']);
-    unset($_SESSION['username']);
+    unset($_SESSION['userEmail']);
     session_destroy();
 
 }
@@ -25,17 +25,17 @@ function redirect_to($path)
     exit();
 }
 
-function login_user($connection, $username, $password)
+function login_user($connection, $email, $password)
 {
     try {
-        $query = sprintf("SELECT * FROM app_user WHERE username='%s' AND userPass='%s'", $username, hash("sha256", $password));
+        $query = sprintf("SELECT * FROM app_user WHERE userEmail='%s' AND userPass='%s'", $email, hash("sha256", $password));
         $result = $connection->query($query);
         if (!$result->num_rows) {
             return false;
         } else {
             $user = $result->fetch_assoc();
             $_SESSION['user_id'] = $user['userID'];
-            $_SESSION['username'] = $user['username'];
+            $_SESSION['userEmail'] = $user['userEmail'];
             return true;
         }
 
@@ -112,3 +112,16 @@ function upload_files($file, $sub_dir = "")
     }
 }
 
+function is_these_parameters_available($params,$input){
+
+    //traversing through all the parameters
+    foreach($params as $param){
+        //if the paramter is not available
+        if(!isset($input[$param])){
+            //return false
+            return false;
+        }
+    }
+    //return true if every param is available
+    return true;
+}

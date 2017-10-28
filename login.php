@@ -7,18 +7,18 @@ if (is_logged_in())
     redirect_to("index.php"); //Redirect user to Home Page if logged in
 
 if (isset($_POST['action']) && $_POST['action'] == "login") {
-    $username = $connection->escape_string(trim($_POST['txtUsername']));
+    $email = $connection->escape_string(trim($_POST['txtEmail']));
     $password = $connection->escape_string(trim($_POST['txtPassword']));
 
     $has_error = false;
     $error_message = [];
 
-    if (empty($username)) {
+    if (empty($email)) {
         $has_error = true;
-        $error_message["txtUsername"] = "Please Enter Username";
-    } elseif (strlen($username) < 4) {
+        $error_message["txtEmail"] = "Please Enter Email";
+    } elseif (strlen($email) < 4) {
         $has_error = true;
-        $error_message["txtUsername"] = "Username is too Short";
+        $error_message["txtEmail"] = "Email is too Short";
     }
 
     if (empty($password)) {
@@ -32,10 +32,10 @@ if (isset($_POST['action']) && $_POST['action'] == "login") {
     if ($has_error) {
         $error_message["form"] = sprintf("%d Error(s) found", count($error_message));
     } else {
-        if (login_user($connection,$username, $password)) {
+        if (login_user($connection,$email, $password)) {
             redirect_to("index.php");
         } else {
-            $error_message["form"] = "Username / Password is Incorrect";
+            $error_message["form"] = "Email / Password is Incorrect";
         }
     }
 
@@ -57,12 +57,12 @@ include "includes/header.php";
                 <?php } ?>
                 <form method="post" action="#">
                     <div class="form-group">
-                        <label for="txtUserName">Username</label>
-                        <input type="text" name="txtUsername" id="txtUserName"
-                               class="form-control <?php echo isset($error_message['txtUsername'])?'is-invalid':'' ?>"
-                               value="<?php echo isset($_POST['txtUsername']) ? $_POST['txtUsername'] : ''; ?>"/>
+                        <label for="txtEmail">Email</label>
+                        <input type="email" name="txtEmail" id="txtEmail"
+                               class="form-control <?php echo isset($error_message['txtEmail'])?'is-invalid':'' ?>"
+                               value="<?php echo isset($_POST['txtEmail']) ? $_POST['txtEmail'] : ''; ?>"/>
                         <div class="invalid-feedback">
-                            <?php echo isset($error_message['txtUsername'])?$error_message['txtUsername']:'' ?>
+                            <?php echo isset($error_message['txtEmail'])?$error_message['txtEmail']:'' ?>
                         </div>
                     </div>
                     <div class="form-group">
